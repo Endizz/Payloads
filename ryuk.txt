@@ -1,5 +1,1 @@
-@echo 
-cls
-This is a test.
-pause
-Stop
+QGVjaG8gDQpjbHMNClRoaXMgaXMgYSB0ZXN0Lg0KcGF1c2UNClN0b3A=
