@@ -1,0 +1,5 @@
+@echo 
+cls
+This is a test.
+pause
+Stop
