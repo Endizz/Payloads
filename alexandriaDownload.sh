@@ -1,0 +1,35 @@
+hashes=(
+    "592406c87b29325930d1a06403a3631f904ef47b5fdededb82c1adbfbad188d6" 
+    "438d92e4a507ba2dbfffb39ccc40d2e98245876d588a9731e0b2f49c42e04fe5" 
+    "478dade0b79a33e83226a9d0da112d5aff129d3b0a83cff10dd0f6f576d90de7" 
+    "7146e61c8da03bfb153aa9d3b5b7a533f555fe6cb03d0cea4eb7ff9253c818ab" 
+    "ace4cc93138cebfe0feb9d93df34e2c800006ad398b646e1eb67a802a8275b4b" 
+    "082d77477a822d0eac3d9dd61d339982bc99a456a3eeb0680273d59e774c0071" 
+    "d0823008302aed97ba4dbebd4d4be096028ef08d6bc01cc8662ba231b0e75659" 
+    "41594c5eef2f8ed5e9534e612f60a487e7ac25c9778c529b7138d45531b68f2c" 
+    "f2c876e2ebe282f5b3cdf22d9519ca523d824b8e4f64bb75c1a750082248ebfb" 
+    "5a8bb8e64d202e7868e3d653994632ddbb8699a1334867332a2c62f5bf740563" 
+    "b7ab8325d65461b1cb989ba79f81dc0ec9d5a08875c45a6ff9b7d078663ff233" 
+    "56860c6fefc71f6d0c801e90f84ce4eae94a47b998e7a956e67414c605c201f2" 
+    "94d529afa8cbfacc94ba7c177e089624d1f2c92a9c425af1af67338549497066" 
+    "d2b58b668422681526b1e8449a6090faaca16bf3fd49312f6d18b31026853c9b" 
+    "b9faf82542bbaca124ef80f58ee55a866ee10481fa30419c89f112d7bb4a9815" 
+    "37fe6ae67bc052f1da1d181cbc89041316476577495ffc0d9fec12063aecf314" 
+    "476e90bdde225e0b6a5a358e3213cbf8f8dc26d73abd3e85ba5447f4afa426ae" 
+    "a58673a131229178d01f90acdcaf9625abbaf9f1c8e18929e1cfac2c115d5c68" 
+    "d98fd28512e5f7fdd6ab0f9efd77c71bfc25c79784f85ade5a44acc1fd403a53" 
+    "6a201999c967586e7c59c2f54643ec5fa9129f2de1485618ac31dd05fb1a3022" 
+    "4d0e785614b9964d537b1ccbe8f353c933d390dcdc3e2b50f0f51480554e566c" 
+    "203486e2fa7399940f9de7be86d8ced89142847248849fb2b61907b7636b3a6e" 
+    "78cd82983fb4269c0f6f0353284e7820b1cf5b9df4cc686a5a67ae40e680b1f3" 
+    "62132ce7656b313d93ff935ed27f2293456c9d779dfbb6d4bdd6f919b5445d28" 
+)
+
+echo "This script requires curl to operate"
+echo "Samples will be downloaded one at a time in the same directory as this script is located in"
+echo "Samples will be password protected with pass=infected"
+
+for hash in ${hashes[@]}; do
+    curl -X GET "http://samplestore.cs.sys:8001/samples/entities/samples/v2?ids=${hash}&password_protected=true" \
+    -H "accept: application/octet-stream" -H "X-CS-CUSTID: 0000000000004000a000000000000002" --output "${hash}.zip"
+done
